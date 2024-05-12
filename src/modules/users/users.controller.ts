@@ -10,6 +10,11 @@ export class UsersController {
   getAll() {
     return this.userService.getAll();
   }
+  @Get(':id')
+  getByIdBranch(@Param('id') id: string) {
+    console.log({ id });
+    return this.userService.getByIdBranch(id);
+  }
 
   @Post()
   create(@Body() users: UsersDTO) {

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { Users, UsersDocument } from './schema/users.schema';
 import { UsersDTO } from './dto/users.dto';
 import { Specialties, SpecialtiesDocument } from '../specialties/schema/specialties.schema';
@@ -14,12 +14,43 @@ export class UserService {
     private specialtyModule: Model<SpecialtiesDocument>
   ) {}
 
+  async getByIdBranch(auxIdBranch: string) {
+    try {
+      const idBranch = new mongoose.Types.ObjectId(auxIdBranch);
+
+      // Obtener todos los usuarios
+      const users = await this.userModule.find({ idBranch: idBranch }).exec();
+
+      // Crear un arreglo para almacenar los datos de los usuarios junto con el nombre de la especialidad
+      const userDataWithSpecialty = [];
+
+      // Iterar sobre cada usuario
+      for (const user of users) {
+        // Encontrar la especialidad correspondiente al idSpecialty del usuario actual
+        const specialty = await this.specialtyModule.findOne({ _id: user.idSpecialty });
+
+        // Si se encuentra la especialidad, agregar los datos del usuario junto con el nombre de la especialidad al arreglo userDataWithSpecialty
+        if (specialty) {
+          userDataWithSpecialty.push({
+            user: user,
+            specialtyName: specialty.name,
+          });
+        }
+      }
+
+      // Retornar los datos de los usuarios junto con el nombre de la especialidad
+      return userDataWithSpecialty;
+    } catch (error) {
+      // Manejar cualquier error que pueda ocurrir
+      console.error('Error al obtener los datos de los usuarios:', error);
+      throw error;
+    }
+  }
   async getAll() {
     try {
       // Obtener todos los usuarios
       const users = await this.userModule.find().exec();
 
-      console.log({ users });
       // Crear un arreglo para almacenar los datos de los usuarios junto con el nombre de la especialidad
       const userDataWithSpecialty = [];
 

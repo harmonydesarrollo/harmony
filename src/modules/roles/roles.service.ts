@@ -1,34 +1,29 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
-import { Treatments, TreatmentsDocument } from './schema/treatments.schema';
-import { TreatmentsDTO } from './dto/treatments.dto';
+import { Model } from 'mongoose';
+import { Roles, RolesDocument } from './schema/roles.schema';
+import { RolesDTO } from './dto/roles.dto';
 
 @Injectable()
-export class TreatmentService {
+export class RolesService {
   constructor(
-    @InjectModel(Treatments.name)
-    private treatmentModule: Model<TreatmentsDocument>
+    @InjectModel(Roles.name)
+    private rolModule: Model<RolesDocument>
   ) {}
 
   async getAll() {
-    return await this.treatmentModule.find().exec();
-  }
-  async getByIdBranch(auxIdBranch: string) {
-    const idBranch = new mongoose.Types.ObjectId(auxIdBranch);
-
-    return await this.treatmentModule.find({ idBranch: idBranch }).exec();
+    return await this.rolModule.find().exec();
   }
 
-  async create(treatments: TreatmentsDTO) {
+  async create(roles: RolesDTO) {
     try {
-      const created_treatment = await this.treatmentModule.create(treatments);
+      const created_roles = await this.rolModule.create(roles);
 
       return [
         {
           status: 200,
           message: 'success',
-          items: created_treatment,
+          items: created_roles,
         },
       ];
     } catch (error) {
@@ -41,14 +36,14 @@ export class TreatmentService {
       ];
     }
   }
-  async update(id: string, updatedTreatmentData: Partial<TreatmentsDTO>) {
+  async update(id: string, updatedRolData: Partial<RolesDTO>) {
     try {
-      const updatedTreatment = await this.treatmentModule.findByIdAndUpdate(id, updatedTreatmentData, { new: true });
+      const updatedRol = await this.rolModule.findByIdAndUpdate(id, updatedRolData, { new: true });
       return [
         {
           status: 200,
           message: 'success',
-          items: updatedTreatment,
+          items: updatedRol,
         },
       ];
     } catch (error) {
@@ -65,11 +60,11 @@ export class TreatmentService {
     try {
       let response = [];
       let status, message;
-      const deletedTreatment = await this.treatmentModule.findByIdAndDelete(id);
+      const deletedRol = await this.rolModule.findByIdAndDelete(id);
 
-      if (!deletedTreatment) {
+      if (!deletedRol) {
         status = 404;
-        message = 'Treatment with ID ${id} not found';
+        message = 'Rol with ID ${id} not found';
       } else {
         status = 200;
         message = 'success';

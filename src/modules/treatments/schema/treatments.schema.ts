@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, ObjectId, SchemaTypes } from 'mongoose';
 
 export type TreatmentsDocument = Treatments & Document;
 
@@ -12,6 +12,8 @@ export class Treatments {
   title: string;
   @Prop()
   description: string;
+  @Prop({ type: SchemaTypes.ObjectId, default: '662741f6ac5568ad604b8b48' })
+  idBranch?: ObjectId;
 }
 
 export const TreatmentSchema = SchemaFactory.createForClass(Treatments);

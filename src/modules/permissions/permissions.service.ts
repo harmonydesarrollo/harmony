@@ -1,34 +1,29 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
-import { Treatments, TreatmentsDocument } from './schema/treatments.schema';
-import { TreatmentsDTO } from './dto/treatments.dto';
+import { Model } from 'mongoose';
+import { Permissions, PermissionsDocument } from './schema/permissions.schema';
+import { PermissionsDTO } from './dto/permissions.dto';
 
 @Injectable()
-export class TreatmentService {
+export class PermissionsService {
   constructor(
-    @InjectModel(Treatments.name)
-    private treatmentModule: Model<TreatmentsDocument>
+    @InjectModel(Permissions.name)
+    private permissionModule: Model<PermissionsDocument>
   ) {}
 
   async getAll() {
-    return await this.treatmentModule.find().exec();
-  }
-  async getByIdBranch(auxIdBranch: string) {
-    const idBranch = new mongoose.Types.ObjectId(auxIdBranch);
-
-    return await this.treatmentModule.find({ idBranch: idBranch }).exec();
+    return await this.permissionModule.find().exec();
   }
 
-  async create(treatments: TreatmentsDTO) {
+  async create(permissions: PermissionsDTO) {
     try {
-      const created_treatment = await this.treatmentModule.create(treatments);
+      const created_permissions = await this.permissionModule.create(permissions);
 
       return [
         {
           status: 200,
           message: 'success',
-          items: created_treatment,
+          items: created_permissions,
         },
       ];
     } catch (error) {
@@ -41,14 +36,14 @@ export class TreatmentService {
       ];
     }
   }
-  async update(id: string, updatedTreatmentData: Partial<TreatmentsDTO>) {
+  async update(id: string, updatedPermissionData: Partial<PermissionsDTO>) {
     try {
-      const updatedTreatment = await this.treatmentModule.findByIdAndUpdate(id, updatedTreatmentData, { new: true });
+      const updatedPermission = await this.permissionModule.findByIdAndUpdate(id, updatedPermissionData, { new: true });
       return [
         {
           status: 200,
           message: 'success',
-          items: updatedTreatment,
+          items: updatedPermission,
         },
       ];
     } catch (error) {
@@ -65,11 +60,11 @@ export class TreatmentService {
     try {
       let response = [];
       let status, message;
-      const deletedTreatment = await this.treatmentModule.findByIdAndDelete(id);
+      const deletedPermission = await this.permissionModule.findByIdAndDelete(id);
 
-      if (!deletedTreatment) {
+      if (!deletedPermission) {
         status = 404;
-        message = 'Treatment with ID ${id} not found';
+        message = 'Permission with ID ${id} not found';
       } else {
         status = 200;
         message = 'success';

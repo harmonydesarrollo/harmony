@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { Services, ServicesDocument } from './schema/service.schema';
 import { ServicesDTO } from './dto/service.dto';
 
@@ -14,7 +14,11 @@ export class ServiceService {
   async getAll() {
     return await this.serviceModule.find().exec();
   }
+  async getByIdBranch(auxIdBranch: string) {
+    const idBranch = new mongoose.Types.ObjectId(auxIdBranch);
 
+    return await this.serviceModule.find({ idBranch: idBranch }).exec();
+  }
   async create(services: ServicesDTO) {
     try {
       const created_service = await this.serviceModule.create(services);

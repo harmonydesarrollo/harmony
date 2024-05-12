@@ -10,6 +10,11 @@ export class TreatmentsController {
   getAll() {
     return this.treatmentsService.getAll();
   }
+  @Get(':id')
+  getByIdBranch(@Param('id') id: string) {
+    console.log({ id });
+    return this.treatmentsService.getByIdBranch(id);
+  }
 
   @Post()
   create(@Body() treatments: TreatmentsDTO) {

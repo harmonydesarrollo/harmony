@@ -11,6 +11,11 @@ export class ServicesController {
   getAll() {
     return this.serviceService.getAll();
   }
+  @Get(':id')
+  getByIdBranch(@Param('id') id: string) {
+    console.log({ id });
+    return this.serviceService.getByIdBranch(id);
+  }
 
   @Post()
   create(@Body() services: ServicesDTO) {

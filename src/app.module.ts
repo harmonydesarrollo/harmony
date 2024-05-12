@@ -14,6 +14,9 @@ import { TreatmentsModule } from './modules/treatments/treatments.module';
 import { UsersModule } from './modules/users/users.module';
 import { SpecialtiesModule } from './modules/specialties/specialties.module';
 import { ServicesModule } from './modules/services/service.module';
+import { BranchesModule } from './modules/branches/branches.module';
+import { RolesModule } from './modules/roles/roles.module';
+import { PermissionsModule } from './modules/permissions/permissions.module';
 
 @Module({
   imports: [
@@ -26,6 +29,9 @@ import { ServicesModule } from './modules/services/service.module';
     UsersModule,
     SpecialtiesModule,
     ServicesModule,
+    BranchesModule,
+    RolesModule,
+    PermissionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
