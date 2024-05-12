@@ -10,7 +10,7 @@ export class S3Controller {
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file) {
     try {
-      const fileUrl = await this.s3Service.uploadFile('bucket-harmony', file.originalname, file.buffer);
+      const fileUrl = await this.s3Service.uploadFile('harmony-web', file.originalname, file.buffer);
       return { success: true, message: 'Archivo subido correctamente', fileUrl };
     } catch (error) {
       return { success: false, message: 'Error al subir el archivo', error };
