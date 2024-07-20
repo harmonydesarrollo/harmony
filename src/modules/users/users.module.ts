@@ -4,6 +4,7 @@ import { UsersController } from './users.controller';
 import { UserService } from './users.service';
 import { UserSchema, Users } from './schema/users.schema';
 import { Specialties, SpecialtiesSchema } from '../specialties/schema/specialties.schema';
+import { Roles, RolesSchema } from '../roles/schema/roles.schema';
 
 @Module({
   imports: [
@@ -15,6 +16,10 @@ import { Specialties, SpecialtiesSchema } from '../specialties/schema/specialtie
       {
         name: Specialties.name,
         schema: SpecialtiesSchema,
+      },
+      {
+        name: Roles.name,
+        schema: RolesSchema,
       },
     ]),
   ],

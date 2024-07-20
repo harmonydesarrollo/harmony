@@ -19,9 +19,9 @@ export class Users {
   fullName: string;
   @Prop({ type: SchemaTypes.ObjectId, default: undefined })
   idSpecialty?: ObjectId;
-  @Prop({ type: SchemaTypes.ObjectId, default: '664035b4b66b5d80f001a154' })
+  @Prop({ type: SchemaTypes.ObjectId, default: '662741f6ac5568ad604b8b48' })
   idBranch?: ObjectId;
-  @Prop({ type: SchemaTypes.ObjectId, default: '66403607790832ab3b9ff8ae' })
+  @Prop({ type: SchemaTypes.ObjectId, default: '66274451ac5568ad604b8b4c' })
   idRol?: ObjectId;
   @Prop()
   photo: string;

@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, ObjectId, SchemaTypes } from 'mongoose';
 
 export type PartnersDocument = Partners & Document;
 
@@ -12,6 +12,8 @@ export class Partners {
   title: string;
   @Prop()
   description: string;
+  @Prop({ type: SchemaTypes.ObjectId, default: undefined }) // dejar por default el admin
+  fkBranchId: ObjectId;
 }
 
 export const PartnerSchema = SchemaFactory.createForClass(Partners);

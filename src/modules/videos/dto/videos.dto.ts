@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongoose';
 
-export class ServicesDTO {
-  img?: string;
+export class VideosDTO {
   title: string;
   description: string;
-  idBranch?: ObjectId;
+  urlVideo: string;
   fkBranchId?: ObjectId;
+  other?: string;
 }

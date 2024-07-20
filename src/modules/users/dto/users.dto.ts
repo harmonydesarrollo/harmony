@@ -14,3 +14,9 @@ export class UsersDTO {
   password?: string;
   username?: string;
 }
+
+export class UserLoginDTO{
+  fullName: string;
+  username: string;
+  photo: string;
+}

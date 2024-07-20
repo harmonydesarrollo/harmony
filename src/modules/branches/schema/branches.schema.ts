@@ -9,15 +9,15 @@ export class Branches {
   @Prop()
   name: string;
   @Prop()
-  state: string;
+  number: string;
   @Prop()
-  fullAddress: string;
+  city:string;
   @Prop()
-  references: string;
+  municipality:string;
+  @Prop()
+  state:string;
   @Prop()
   phone: string;
-  @Prop()
-  photo: string;
 }
 
 export const BranchesSchema = SchemaFactory.createForClass(Branches);

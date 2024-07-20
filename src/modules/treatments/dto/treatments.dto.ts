@@ -5,4 +5,5 @@ export class TreatmentsDTO {
   title: string;
   description: string;
   idBranch?: ObjectId;
+  fkBranchId?: ObjectId;
 }
