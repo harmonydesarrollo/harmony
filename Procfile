@@ -1,2 +1,1 @@
-web: npm start
-release: npm install
+web: npm run start:prod

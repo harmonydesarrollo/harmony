@@ -21,6 +21,24 @@ export class UsersController {
     return this.userService.create(users);
   }
 
+  @Post('login')
+  async login(@Body() body: { username: string, password: string }): Promise<any> {
+    const { username, password } = body;
+    const user = await this.userService.findByUsernameAndPassword(username, password);
+
+    if (user) {
+      return { 
+        code:200,
+        message: 'Login successful',
+        items:[
+          user
+        ]
+      };
+    } else {
+      return { message: 'Invalid username or password' };
+    }
+  }
+
   @Patch(':id')
   async updateUser(@Param('id') id: string, @Body() updatedUserData: Partial<UsersDTO>) {
     return this.userService.update(id, updatedUserData);

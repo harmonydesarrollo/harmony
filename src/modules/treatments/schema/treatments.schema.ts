@@ -14,6 +14,8 @@ export class Treatments {
   description: string;
   @Prop({ type: SchemaTypes.ObjectId, default: '662741f6ac5568ad604b8b48' })
   idBranch?: ObjectId;
+  @Prop({ type: SchemaTypes.ObjectId, default: undefined }) // dejar por default el admin
+  fkBranchId: ObjectId;
 }
 
 export const TreatmentSchema = SchemaFactory.createForClass(Treatments);

@@ -1,31 +1,30 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-
-import { Employees, EmployeesDocument } from './schema/employee.schema';
-import { EmployeesDTO } from './dto/employee.dto';
+import { Questions, QuestionsDocument } from './schema/questions.schema';
+import { QuestionsDTO } from './dto/questions.dto';
 
 @Injectable()
-export class EmployeeService {
+export class QuestionService {
   constructor(
-    @InjectModel(Employees.name)
-    private employeeModule: Model<EmployeesDocument>
+    @InjectModel(Questions.name)
+    private questionModule: Model<QuestionsDocument>
   ) {}
 
   async getAll() {
     // console.log('consulta!!!');
-    return await this.employeeModule.find().exec();
+    return await this.questionModule.find().exec();
   }
 
-  async create(employees: EmployeesDTO) {
+  async create(questions: QuestionsDTO) {
     try {
-      const created_employee = await this.employeeModule.create(employees);
+      const created_question = await this.questionModule.create(questions);
 
       return [
         {
           status: 200,
           message: 'success',
-          items: created_employee,
+          items: created_question,
         },
       ];
     } catch (error) {
@@ -38,14 +37,14 @@ export class EmployeeService {
       ];
     }
   }
-  async update(id: string, updatedEmployeeData: Partial<EmployeesDTO>) {
+  async update(id: string, updatedQuestionData: Partial<QuestionsDTO>) {
     try {
-      const updatedEmployee = await this.employeeModule.findByIdAndUpdate(id, updatedEmployeeData, { new: true });
+      const updatedQuestion = await this.questionModule.findByIdAndUpdate(id, updatedQuestionData, { new: true });
       return [
         {
           status: 200,
           message: 'success',
-          items: updatedEmployee,
+          items: updatedQuestion,
         },
       ];
     } catch (error) {
@@ -60,13 +59,12 @@ export class EmployeeService {
   }
   async delete(id: string) {
     try {
-      let response = [];
       let status, message;
-      const deletedEmployee = await this.employeeModule.findByIdAndDelete(id);
+      const deletedQuestion = await this.questionModule.findByIdAndDelete(id);
 
-      if (!deletedEmployee) {
+      if (!deletedQuestion) {
         status = 404;
-        message = 'Employee with ID ${id} not found';
+        message = 'Partner with ID ${id} not found';
       } else {
         status = 200;
         message = 'success';

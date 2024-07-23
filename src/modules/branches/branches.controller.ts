@@ -11,6 +11,10 @@ export class BranchesController {
     return this.branchService.getAll();
   }
 
+  @Get(':branchId')
+  getAllFromLocation(@Param('branchId') branchId: string) {
+    return this.branchService.getAll();
+  }
   @Post()
   create(@Body() branches: BranchesDTO) {
     return this.branchService.create(branches);
