@@ -6,6 +6,6 @@ export class AppService {
   ) {}
 
   async getAll() {
-    return 'Hola mundo prod-update!!!'
+    return 'Hola mundo prod-new!!!'
   }
 }
