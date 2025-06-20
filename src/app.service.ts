@@ -6,6 +6,6 @@ export class AppService {
   ) {}
 
   async getAll() {
-    return 'Hola mundo prod-2025!!!'
+    return 'Hola mundo prod-2025!'
   }
 }
