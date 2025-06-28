@@ -20,6 +20,7 @@ import { PermissionsModule } from './modules/permissions/permissions.module';
 import { QuestionsModule } from './modules/questions/questions.module';
 import { VideosModule } from './modules/videos/videos.module';
 import { AppointmentsModule } from './modules/appointments/appointments.module';
+import { MatrixsModule } from './modules/matrix/matrix.module';
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { AppointmentsModule } from './modules/appointments/appointments.module';
     PermissionsModule,
     QuestionsModule,
     VideosModule,
-    AppointmentsModule
+    AppointmentsModule,
+    MatrixsModule
     
   ],
   controllers: [AppController],
