@@ -23,6 +23,7 @@ export class TreatmentsController {
 
   @Patch(':id')
   async updateTreatment(@Param('id') id: string, @Body() updatedTreatmentData: Partial<TreatmentsDTO>) {
+    console.log('🧾 PATCH recibido:', updatedTreatmentData);
     return this.treatmentsService.update(id, updatedTreatmentData);
   }
 

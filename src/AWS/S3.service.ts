@@ -24,12 +24,9 @@ export class S3Service {
   }
 
   async updateFile(fileUrl: string, newFileContent: Buffer): Promise<string> {
-    // Parsea la URL de S3 para obtener el bucket y la clave del archivo
     const urlParts = fileUrl.split('/');
     const bucketName = urlParts[3];
     const key = urlParts.slice(4).join('/');
-
-    // Decodifica la clave del archivo para manejar la diferencia en la codificación
     const decodedKey = decodeURIComponent(key);
 
     const params = {
