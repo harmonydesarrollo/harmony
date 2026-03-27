@@ -4,5 +4,6 @@ export class BranchesDTO {
   city: string;
   municipality: string;
   state: string;
-  phone: string
+  phone: string;
+  mapLink?: string;
 }

@@ -18,6 +18,8 @@ export class Branches {
   state:string;
   @Prop()
   phone: string;
+  @Prop()
+  mapLink?: string;
 }
 
 export const BranchesSchema = SchemaFactory.createForClass(Branches);
